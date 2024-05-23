@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/tutorials_page.dart';
+import 'package:provider/provider.dart';
+import 'models/pillar.dart';
 
 void main() {
   runApp(const Application());
@@ -22,7 +24,10 @@ class _ApplicationState extends State<Application> {
         appBar: AppBar(
           title: const Text('Tutorial Tracker'),
         ),
-        body: const TutorialsPage(),
+        body: Provider<Pillar>(
+          create: (context) => Pillar(type: PillarType.flutter, articleCount: 115),
+          child: const TutorialsPage()
+        ),
       ),
     );
   }
