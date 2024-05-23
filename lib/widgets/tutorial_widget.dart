@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../models/pillar.dart';
+import '../models/domain.dart';
 
 class TutorialWidget extends StatefulWidget {
-  const TutorialWidget({super.key});
+  final Domain domain;
+  const TutorialWidget({super.key, required this.domain});
 
   @override
   State<TutorialWidget> createState() => _TutorialWidgetState();
@@ -12,27 +12,23 @@ class TutorialWidget extends StatefulWidget {
 class _TutorialWidgetState extends State<TutorialWidget> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<Pillar>(
-      builder: (_, pillar, __) {
-        return Stack(
-          children: [
-            InkWell(
-              onTap: () {
-                pillar.increaseArticleCount();
-              },
-              child:
-                  Image.asset('assets/images/${pillar.type.imageName}', width: 110, height: 110),
-            ),
-            Positioned(
-              bottom: 2,
-              child: CircleAvatar(
-                backgroundColor: Colors.blue,
-                child: Text(pillar.articleCount.toString()),
-              ),
-            )
-          ],
-        );
-      }
+    return Stack(
+      children: [
+        InkWell(
+          onTap: () {
+            widget.domain.increaseArticleCount();
+          },
+          child: Image.asset('assets/images/${widget.domain.imageName}',
+              width: 110, height: 110),
+        ),
+        Positioned(
+          bottom: 2,
+          child: CircleAvatar(
+            backgroundColor: Colors.blue,
+            child: Text(widget.domain.articleCount.toString()),
+          ),
+        )
+      ],
     );
   }
 }

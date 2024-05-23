@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'pages/tutorials_page.dart';
 import 'package:provider/provider.dart';
 import 'models/pillar.dart';
+import 'models/domain.dart';
 
 void main() {
   runApp(const Application());
@@ -24,9 +25,25 @@ class _ApplicationState extends State<Application> {
         appBar: AppBar(
           title: const Text('Tutorial Tracker'),
         ),
-        body: ChangeNotifierProvider<Pillar>(
-          create: (context) => Pillar(type: PillarType.flutter, articleCount: 115),
-          child: const TutorialsPage()
+        body: MultiProvider(
+          providers: [
+            ChangeNotifierProvider<Flutter>(
+              create: (context) => Flutter(
+                Pillar(type: PillarType.flutter, articleCount: 115),
+              ),
+            ),
+            ChangeNotifierProvider<Android>(
+              create: (context) => Android(
+                Pillar(type: PillarType.android, articleCount: 282),
+              ),
+            ),
+            ChangeNotifierProvider<Swift>(
+              create: (context) => Swift(
+                Pillar(type: PillarType.ios, articleCount: 608),
+              ),
+            ),
+          ],
+          child: const TutorialsPage(),
         ),
       ),
     );
