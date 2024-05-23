@@ -12,7 +12,7 @@ class TutorialWidget extends StatefulWidget {
 class _TutorialWidgetState extends State<TutorialWidget> {
   @override
   Widget build(BuildContext context) {
-    final pillar = Provider.of<Pillar>(context);
+    final pillar = context.watch<Pillar>();
     return Stack(
       children: [
         InkWell(

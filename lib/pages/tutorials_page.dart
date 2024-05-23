@@ -13,7 +13,7 @@ class TutorialsPage extends StatefulWidget {
 class _TutorialsPageState extends State<TutorialsPage> {
   @override
   Widget build(BuildContext context) {
-    final pillar = Provider.of<Pillar>(context);
+    final pillar = context.watch<Pillar>();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
