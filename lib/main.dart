@@ -24,7 +24,7 @@ class _ApplicationState extends State<Application> {
         appBar: AppBar(
           title: const Text('Tutorial Tracker'),
         ),
-        body: Provider<Pillar>(
+        body: ChangeNotifierProvider<Pillar>(
           create: (context) => Pillar(type: PillarType.flutter, articleCount: 115),
           child: const TutorialsPage()
         ),
